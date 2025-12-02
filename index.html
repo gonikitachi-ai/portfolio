@@ -9,11 +9,10 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url("bg.jpg.png?v=10") center top / cover no-repeat fixed;
+      background: url("bg.jpg.png?v=15") center top / cover no-repeat fixed;
       color: #ffffff;
     }
 
-    /* затемняющий слой поверх фото */
     body::before {
       content: "";
       position: fixed;
@@ -90,6 +89,66 @@
       font-size: 13px;
       opacity: 0.7;
     }
+
+    .services li {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .services li:hover {
+      color: #4da3ff;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.75);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+      z-index: 999;
+    }
+
+    .modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      background: #111;
+      padding: 25px;
+      border-radius: 20px 20px 0 0;
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .close {
+      font-size: 28px;
+      float: right;
+      cursor: pointer;
+    }
+
+    .modal-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4da3ff;
+      color: #000;
+      border-radius: 10px;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -103,163 +162,66 @@
 
     <div class="block">
       <h2>👋 Кто я</h2>
-      <p>
-        Я занимаюсь разработкой плагинов, автоматизацией процессов и созданием
-        кастомных IT-решений под задачи клиента. Беру как небольшие проекты,
-        так и сложные нестандартные заказы.
-      </p>
+      <p>Я занимаюсь разработкой плагинов, автоматизацией процессов и созданием кастомных IT-решений под задачи клиента.</p>
     </div>
 
-    <div class="card">
-  <h2>⚙️ Что я умею</h2>
-  <ul class="services">
-    <li onclick="openModal('bots')">🤖 Telegram и Viber боты</li>
-    <li onclick="openModal('auto')">⚡ Автоматизация процессов</li>
-    <li onclick="openModal('parsing')">📊 Парсинг, автопостинг</li>
-    <li onclick="openModal('python')">🐍 Python-скрипты</li>
-    <li onclick="openModal('plugins')">🧩 Плагины и расширения</li>
-    <li onclick="openModal('custom')">🚀 Нестандартные решения</li>
-  </ul>
-</div>
-
+    <div class="block">
+      <h2>⚙️ Что я умею</h2>
+      <ul class="services">
+        <li onclick="openModal('bots')">🤖 Telegram и Viber боты</li>
+        <li onclick="openModal('auto')">⚡ Автоматизация процессов</li>
+        <li onclick="openModal('parsing')">📊 Парсинг и автопостинг</li>
+        <li onclick="openModal('python')">🐍 Python-скрипты</li>
+        <li onclick="openModal('plugins')">🧩 Плагины и расширения</li>
+        <li onclick="openModal('custom')">🚀 Нестандартные решения</li>
+      </ul>
+    </div>
 
     <div class="block">
       <h2>💸 Условия</h2>
-      <p>
-        Сейчас я развиваю портфолио, поэтому цены ниже рынка.
-        Возможны хорошие скидки для первых клиентов и
-        длительного сотрудничества.
-      </p>
+      <p>Цены ниже рынка для первых клиентов. Скидки для долгосрочного сотрудничества.</p>
     </div>
 
     <div class="block">
       <h2>📩 Связь</h2>
-      <p>
-        Напишите мне в Telegram, опишите задачу — я подскажу,
-        возможно ли реализовать и сколько это будет стоить.
-      </p>
-
-      <!-- ВСТАВЬ СЮДА СВОЙ НИК ВМЕСТО ТЕКСТА -->
-      <a class="btn" href="https://t.me/ТВОЙ_НИК" target="_blank">
-        Написать в Telegram
-      </a>
+      <p>Напишите мне в Telegram и опишите задачу.</p>
+      <a class="btn" href="https://t.me/fallenangelya" target="_blank">Написать в Telegram</a>
     </div>
 
   </div>
 
-  <div class="footer">
-    © 2025 • PLG.WW •
+  <div class="footer">© 2025 • PLG.WW</div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-text"></p>
+      <a id="modal-btn" class="modal-btn" href="#" target="_blank">Заказать</a>
+    </div>
   </div>
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h2 id="modal-title"></h2>
-    <p id="modal-text"></p>
-    <a id="modal-btn" class="modal-btn" href="#" target="_blank">Заказать</a>
-  </div>
-</div>
-<script>
-const services = {
-  bots: {
-    title: "🤖 Telegram и Viber боты",
-    text: "Создаю ботов под магазины, поддержку, прием заказов, автопостинг, платежи, уведомления. Подключение API, WebApp, CRM.",
-  },
-  auto: {
-    title: "⚡ Автоматизация процессов",
-    text: "Автоматизирую клики, действия в программах, Excel, сайты, CRM, чаты, сбор данных без участия человека.",
-  },
-  parsing: {
-    title: "📊 Парсинг и автопостинг",
-    text: "Сбор данных с сайтов, маркетплейсов, Telegram, Viber. Автопубликации, мониторинг цен, новостей.",
-  },
-  python: {
-    title: "🐍 Python-скрипты",
-    text: "Пишу скрипты под конкретные задачи: учет, загрузка файлов, фильтрация, удаление, анализ данных.",
-  },
-  plugins: {
-    title: "🧩 Плагины и расширения",
-    text: "Создание расширений для браузеров, автоматических кнопок, удобных панелей управления.",
-  },
-  custom: {
-    title: "🚀 Нестандартные IT-решения",
-    text: "Решаю нестандартные задачи, автоматизация бизнес-процессов, интеграции любых сервисов.",
-  }
-};
 
-function openModal(key) {
-  document.getElementById("modal-title").innerText = services[key].title;
-  document.getElementById("modal-text").innerText = services[key].text;
-  document.getElementById("modal-btn").href = "https://t.me/fallenangelya";
-  document.getElementById("modal").classList.add("show");
-}
+  <script>
+    const services = {
+      bots: { title: "🤖 Telegram и Viber боты", text: "Боты под магазины, поддержку, прием заказов, автопостинг, платежи." },
+      auto: { title: "⚡ Автоматизация процессов", text: "Автоматизация действий, программ, чатов, сайтов, Excel, CRM." },
+      parsing: { title: "📊 Парсинг и автопостинг", text: "Сбор данных с сайтов, Telegram, маркетплейсов, мониторинг цен." },
+      python: { title: "🐍 Python-скрипты", text: "Скрипты под любые задачи: учет, загрузка, фильтрация, анализ." },
+      plugins: { title: "🧩 Плагины и расширения", text: "Расширения браузеров, панели управления, автоматические кнопки." },
+      custom: { title: "🚀 Нестандартные решения", text: "Индивидуальные интеграции, нестандартные IT-задачи." }
+    };
 
-function closeModal() {
-  document.getElementById("modal").classList.remove("show");
-}
+    function openModal(key) {
+      document.getElementById("modal-title").innerText = services[key].title;
+      document.getElementById("modal-text").innerText = services[key].text;
+      document.getElementById("modal-btn").href = "https://t.me/fallenangelya";
+      document.getElementById("modal").classList.add("show");
+    }
 
-</script>
-.services li {
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.services li:hover {
-  color: #4ea3ff;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.75);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
-  z-index: 999;
-}
-
-.modal.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-content {
-  width: 100%;
-  max-width: 500px;
-  background: #111;
-  padding: 25px;
-  border-radius: 20px 20px 0 0;
-  animation: slideUp 0.4s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.close {
-  font-size: 28px;
-  float: right;
-  cursor: pointer;
-}
-
-.modal-btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #4ea3ff;
-  color: #000;
-  border-radius: 10px;
-  text-decoration: none;
-}
+    function closeModal() {
+      document.getElementById("modal").classList.remove("show");
+    }
+  </script>
 
 </body>
 </html>
-
-
-
