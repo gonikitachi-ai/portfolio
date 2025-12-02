@@ -26,16 +26,6 @@
       text-align: center;
     }
 
-    .header h1 {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .header p {
-      font-size: 16px;
-      opacity: 0.9;
-    }
-
     .container {
       max-width: 900px;
       margin: auto;
@@ -50,22 +40,14 @@
       box-shadow: 0 0 25px rgba(0,0,0,0.6);
     }
 
-    .block h2 {
-      margin-top: 0;
-      color: #4da3ff;
-      font-size: 20px;
+    .block h2 { color: #4da3ff; }
+
+    .services li {
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .block p,
-    .block li {
-      font-size: 15px;
-      line-height: 1.6;
-      opacity: 0.96;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
+    .services li:hover { color: #4da3ff; }
 
     .btn {
       display: inline-block;
@@ -76,35 +58,11 @@
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      opacity: 0.85;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 25px;
-      font-size: 13px;
-      opacity: 0.7;
-    }
-
-    .services li {
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .services li:hover {
-      color: #4da3ff;
     }
 
     .modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0,0,0,0.75);
       display: flex;
       justify-content: center;
@@ -139,121 +97,79 @@
       float: right;
       cursor: pointer;
     }
-
-    .modal-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #4da3ff;
-      color: #000;
-      border-radius: 10px;
-      text-decoration: none;
-    }
   </style>
 </head>
+
 <body>
 
-  <div class="header">
-    <h1>Автоматизация • Боты • Плагины • Скрипты</h1>
-    <p>Разработка IT-решений под заказ</p>
+<div class="header">
+  <h1>Автоматизация • Боты • Плагины • Скрипты</h1>
+  <p>Разработка IT-решений под заказ</p>
+</div>
+
+<div class="container">
+
+  <div class="block">
+    <h2>👋 Кто я</h2>
+    <p>Я занимаюсь разработкой плагинов, автоматизацией процессов и созданием кастомных IT-решений.</p>
   </div>
 
-  <div class="container">
-
-    <div class="block">
-      <h2>👋 Кто я</h2>
-      <p>Я занимаюсь разработкой плагинов, автоматизацией процессов и созданием кастомных IT-решений под задачи клиента.</p>
-    </div>
-
-    <div class="block">
-      <h2>⚙️ Что я умею</h2>
-      <ul class="services">
-        <li onclick="openModal('bots')">🤖 Telegram и Viber боты</li>
-        <li onclick="openModal('auto')">⚡ Автоматизация процессов</li>
-        <li onclick="openModal('parsing')">📊 Парсинг и автопостинг</li>
-        <li onclick="openModal('python')">🐍 Python-скрипты</li>
-        <li onclick="openModal('plugins')">🧩 Плагины и расширения</li>
-        <li onclick="openModal('custom')">🚀 Нестандартные плагины утилы</li>
-        <li onclick="openModal('custom')">🖥️ Телеграм проекты приложения</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <h2>💸 Условия</h2>
-      <p>Цены ниже рынка для первых клиентов. Скидки для долгосрочного сотрудничества.</p>
-    </div>
-
-    <div class="block">
-      <h2>📩 Связь</h2>
-      <p>Напишите мне в Telegram и опишите задачу.</p>
-      <a class="btn" href="https://t.me/fallenangelya" target="_blank">Написать в Telegram</a>
-    </div>
-
+  <div class="block">
+    <h2>⚙ Что я умею</h2>
+    <ul class="services">
+      <li onclick="openModal('bots')">🤖 Telegram и Viber боты</li>
+      <li onclick="openModal('auto')">⚡ Автоматизация процессов</li>
+      <li onclick="openModal('parsing')">📊 Парсинг и автопостинг</li>
+      <li onclick="openModal('python')">🐍 Python-скрипты</li>
+      <li onclick="openModal('plugins')">🧩 Плагины и расширения</li>
+      <li onclick="openModal('custom')">🚀 Нестандартные решения</li>
+      <li onclick="openModal('backend')">🖥️ Телеграм проекты и приложения</li>
+    </ul>
   </div>
 
-  <div class="footer">© 2025 • PLG.WW</div>
-
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">×</span>
-      <h2 id="modal-title"></h2>
-      <p id="modal-text"></p>
-      <a id="modal-btn" class="modal-btn" href="#" target="_blank">Заказать</a>
-    </div>
+  <div class="block">
+    <h2>💸 Условия</h2>
+    <p>Цены ниже рынка для первых клиентов. Скидки для долгосрочного сотрудничества.</p>
   </div>
 
-  <script>
-   const services = {
-  bots: {
-    title: "🤖 Telegram и Viber боты",
-    text: "Создаю ботов под магазины, поддержку, приём заказов, автопостинг, платежи, уведомления.\n\n✅ Что могу:\n• Боты для интернет-магазинов\n• Приём заявок и заказов\n• Подключение оплат\n• Интеграция с CRM\n• WebApp внутри Telegram\n\n⏱ Сроки: от 2 до 7 дней\n💰 Цена: от $50"
-  },
+  <div class="block">
+    <h2>📩 Связь</h2>
+    <a class="btn" href="https://t.me/fallenangelya" target="_blank">Написать в Telegram</a>
+  </div>
 
-  auto: {
-    title: "⚡ Автоматизация процессов",
-    text: "Автоматизирую рутину, которую обычно делают вручную.\n\n✅ Возможности:\n• Автоклики\n• Работа с сайтами\n• Excel / Google таблицы\n• Чаты и CRM\n• Сбор данных без участия человека\n\n⏱ Сроки: 2–5 дней\n💰 Цена: от $40"
-  },
+</div>
 
-  parsing: {
-    title: "📊 Парсинг и автопостинг",
-    text: "Сбор информации с сайтов, маркетплейсов, Telegram, Viber.\n\n✅ Для чего:\n• Мониторинг цен\n• Автозагрузка объявлений\n• Парсинг товаров\n• Автопостинг в каналы\n\n⏱ Сроки: 1–4 дня\n💰 Цена: от $30"
-  },
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+    <a id="modal-btn" class="btn" target="_blank">Заказать</a>
+  </div>
+</div>
 
-  python: {
-    title: "🐍 Python-скрипты",
-    text: "Программирую скрипты под конкретные задачи.\n\n✅ Примеры:\n• Автообработка файлов\n• Учёт\n• Очистка данных\n• Фильтрация\n• Работа с API\n\n⏱ Сроки: 1–3 дня\n💰 Цена: от $25"
-  },
-
-  plugins: {
-    title: "🧩 Плагины и расширения",
-    text: "Создаю плагины и расширения под браузеры и программы.\n\n✅ Возможности:\n• Chrome расширения\n• Кастомные кнопки\n• Панели управления\n• Автоматические действия\n\n⏱ Сроки: 3–7 дней\n💰 Цена: от $60"
-  },
-
-  custom: {
-    title: "🚀 Нестандартные IT-решения",
-    text: "Берусь за нестандартные и сложные задачи.\n\n✅ Решаю:\n• Интеграции сервисов\n• Связку разных платформ\n• Уникальные бизнес-задачи\n\n⏱ Сроки: индивидуально\n💰 Цена: договорная"
-  },
-
-  backend: {
-    title: "🖥️ Телеграм проекты приложения",
-    text: "Создаю серверную часть проектов.\n\n✅ Что входит:\n• API\n• Базы данных\n• Авторизация\n• Интеграции с сервисами\n\n⏱ Сроки: 5–10 дней\n💰 Цена: от $80"
-  }
+<script>
+const services = {
+  bots: { title: "🤖 Telegram и Viber боты", text: "Боты под магазины, заказы, оплаты, уведомления." },
+  auto: { title: "⚡ Автоматизация процессов", text: "Автоклики, сайты, Excel, CRM, чаты." },
+  parsing: { title: "📊 Парсинг и автопостинг", text: "Сбор товаров, цен, объявлений, автопубликации." },
+  python: { title: "🐍 Python-скрипты", text: "Обработка файлов, API, фильтрация, учёт." },
+  plugins: { title: "🧩 Плагины", text: "Chrome-расширения, кнопки, панели." },
+  custom: { title: "🚀 Нестандартные решения", text: "Уникальные бизнес-задачи." },
+  backend: { title: "🖥️ Телеграм проекты", text: "API, базы данных, серверная логика." }
 };
 
+function openModal(key) {
+  document.getElementById("modal-title").innerText = services[key].title;
+  document.getElementById("modal-text").innerText = services[key].text;
+  document.getElementById("modal-btn").href = "https://t.me/fallenangelya";
+  document.getElementById("modal").classList.add("show");
+}
 
-    function openModal(key) {
-      document.getElementById("modal-title").innerText = services[key].title;
-      document.getElementById("modal-text").innerText = services[key].text;
-      document.getElementById("modal-btn").href = "https://t.me/fallenangelya";
-      document.getElementById("modal").classList.add("show");
-    }
-
-    function closeModal() {
-      document.getElementById("modal").classList.remove("show");
-    }
-  </script>
+function closeModal() {
+  document.getElementById("modal").classList.remove("show");
+}
+</script>
 
 </body>
 </html>
-
-
