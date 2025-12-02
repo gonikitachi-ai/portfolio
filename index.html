@@ -110,20 +110,18 @@
       </p>
     </div>
 
-    <div class="block">
-      <h2>⚙️ Что я умею</h2>
-      <ul>
-        <li>Telegram и Viber боты</li>
-        <li>Автоматизация рутинных процессов</li>
-        <li>Автопостинг, парсинг, интеграции</li>
-        <li>Python-скрипты под заказ</li>
-        <li>Плагины и расширения</li>
-        <li>Нестандартные IT-решения</li>
-        <li>Разработка AI-ботов под бизнес</li>
-        <li>Боты в обход разных систем фрода</li>
+    <div class="card">
+  <h2>⚙️ Что я умею</h2>
+  <ul class="services">
+    <li onclick="openModal('bots')">🤖 Telegram и Viber боты</li>
+    <li onclick="openModal('auto')">⚡ Автоматизация процессов</li>
+    <li onclick="openModal('parsing')">📊 Парсинг, автопостинг</li>
+    <li onclick="openModal('python')">🐍 Python-скрипты</li>
+    <li onclick="openModal('plugins')">🧩 Плагины и расширения</li>
+    <li onclick="openModal('custom')">🚀 Нестандартные решения</li>
+  </ul>
+</div>
 
-      </ul>
-    </div>
 
     <div class="block">
       <h2>💸 Условия</h2>
@@ -152,8 +150,116 @@
   <div class="footer">
     © 2025 • PLG.WW •
   </div>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+    <a id="modal-btn" class="modal-btn" href="#" target="_blank">Заказать</a>
+  </div>
+</div>
+<script>
+const services = {
+  bots: {
+    title: "🤖 Telegram и Viber боты",
+    text: "Создаю ботов под магазины, поддержку, прием заказов, автопостинг, платежи, уведомления. Подключение API, WebApp, CRM.",
+  },
+  auto: {
+    title: "⚡ Автоматизация процессов",
+    text: "Автоматизирую клики, действия в программах, Excel, сайты, CRM, чаты, сбор данных без участия человека.",
+  },
+  parsing: {
+    title: "📊 Парсинг и автопостинг",
+    text: "Сбор данных с сайтов, маркетплейсов, Telegram, Viber. Автопубликации, мониторинг цен, новостей.",
+  },
+  python: {
+    title: "🐍 Python-скрипты",
+    text: "Пишу скрипты под конкретные задачи: учет, загрузка файлов, фильтрация, удаление, анализ данных.",
+  },
+  plugins: {
+    title: "🧩 Плагины и расширения",
+    text: "Создание расширений для браузеров, автоматических кнопок, удобных панелей управления.",
+  },
+  custom: {
+    title: "🚀 Нестандартные IT-решения",
+    text: "Решаю нестандартные задачи, автоматизация бизнес-процессов, интеграции любых сервисов.",
+  }
+};
+
+function openModal(key) {
+  document.getElementById("modal-title").innerText = services[key].title;
+  document.getElementById("modal-text").innerText = services[key].text;
+  document.getElementById("modal-btn").href = "https://t.me/fallenangelya";
+  document.getElementById("modal").classList.add("show");
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("show");
+}
+
+</script>
+.services li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.services li:hover {
+  color: #4ea3ff;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+  z-index: 999;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  background: #111;
+  padding: 25px;
+  border-radius: 20px 20px 0 0;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.close {
+  font-size: 28px;
+  float: right;
+  cursor: pointer;
+}
+
+.modal-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #4ea3ff;
+  color: #000;
+  border-radius: 10px;
+  text-decoration: none;
+}
 
 </body>
 </html>
+
 
 
