@@ -9,17 +9,16 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      /* принудительная перезагрузка фона через ?v=3 */
-      background: url("bg.jpg?v=3") center top / cover no-repeat fixed;
+      background: url("bg.jpg?v=10") center top / cover no-repeat fixed;
       color: #ffffff;
     }
 
-    /* затемняющий слой без размытия */
+    /* затемняющий слой поверх фото */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45); /* меньше затемнение = выше резкость */
+      background: rgba(0, 0, 0, 0.45);
       z-index: -1;
     }
 
@@ -45,7 +44,7 @@
     }
 
     .block {
-      background: rgba(20, 20, 20, 0.92); /* без blur */
+      background: rgba(20, 20, 20, 0.92);
       border-radius: 16px;
       padding: 22px;
       margin-bottom: 22px;
@@ -139,7 +138,7 @@
         возможно ли реализовать и сколько это будет стоить.
       </p>
 
-      <!-- ОБЯЗАТЕЛЬНО ЗАМЕНИ ССЫЛКУ НА СВОЮ -->
+      <!-- ВСТАВЬ СЮДА СВОЙ НИК ВМЕСТО ТЕКСТА -->
       <a class="btn" href="https://t.me/ТВОЙ_НИК" target="_blank">
         Написать в Telegram
       </a>
